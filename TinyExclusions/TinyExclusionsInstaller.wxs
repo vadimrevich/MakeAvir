@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Product Id="FA5D224A-0CFA-4D04-9FA6-6037C6A84173" Name="NIT-TinyExclusions" Language="1033" Version="0.0.1.0" Manufacturer="New Internet Technologies Inc." UpgradeCode="1853DDA2-6685-4D42-90A4-B14D4F674C37">
+        <Package Description="Test file in a Product" Comments="Simple test" InstallerVersion="200" Compressed="yes" />
+        <Media Id="1" Cabinet="simple.cab" EmbedCab="yes" />
+        <WixVariable Id="WixUILicenseRtf" Value="license.rtf" />
+        <Directory Id="TARGETDIR" Name="SourceDir">
+            <Directory Id="INSTALLFOLDER" Name="pub1">
+                <Directory Id="DISTRIB" Name="Distrib">
+                    <Directory Id="ZLOVRED" Name="Zlovred">
+                        <Component Id="ALLOWPOSHSCRIPTSGLOBAL.CMD" DiskId="1" Guid="5DF1D294-26F2-4010-98E3-C220C05F8A54">
+                            <File Id="ALLOWPOSHSCRIPTSGLOBAL.CMD" Name="AllowPoShScriptsGlobal.cmd" Source="С\pub1\Distrib\Zlovred\AllowPoShScriptsGlobal.cmd" />
+                        </Component>
+                        <Component Id="NIT_TINYEXCLUSIONS.PS1" DiskId="1" Guid="50246A7B-6DEF-4609-9C0F-A03F3AF10620">
+                            <File Id="NIT_TINYEXCLUSIONS.PS1" Name="NIT-TinyExclusions.ps1" Source="С\pub1\Distrib\Zlovred\NIT-TinyExclusions.ps1" />
+                        </Component>
+                        <Component Id="TINYEXCLUSIONS.WSF" DiskId="1" Guid="5900E55C-3D72-42D3-A354-12F171A0EF6C">
+                            <File Id="TINYEXCLUSIONS.WSF" Name="TinyExclusions.wsf" Source="С\pub1\Distrib\Zlovred\TinyExclusions.wsf" />
+                        </Component>
+                        <Component Id="PostInstall.TinyExclusions.vbs" Guid="2F9F1EDA-3ADE-4339-97CF-53DE6B4B4622">
+                            <File Id="PostInstall.TinyExclusions.vbs" Name="PostInstall.TinyExclusions.vbs" Source="С\pub1\Distrib\Zlovred\PostInstall.TinyExclusions.vbs" />
+                        </Component>
+                    </Directory>
+                </Directory>
+            </Directory>
+        </Directory>
+        <UI />
+        <UIRef Id="WixUI_InstallDir" />
+        <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
+        <Property Id="ROOTDRIVE" Value="C:\" />
+        <Feature Id="DefaultFeature" Title="Main Feature" Level="1">
+            <ComponentRef Id="ALLOWPOSHSCRIPTSGLOBAL.CMD" />
+            <ComponentRef Id="NIT_TINYEXCLUSIONS.PS1" />
+            <ComponentRef Id="TINYEXCLUSIONS.WSF" />
+            <ComponentRef Id="PostInstall.TinyExclusions.vbs" />
+        </Feature>
+        <UI />
+        <SetDirectory Id="INSTALLFOLDER" Value="[WindowsVolume]pub1" />
+    </Product>
+</Wix>

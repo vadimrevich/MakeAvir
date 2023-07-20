@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- ***************************** -->
+<!-- File wsf -->
+<!-- Msg.TinyExclusions.Install.Success.wsf -->
+<!--
+ * Test Check Integrity
+ * (errorlevel 0 Text)
+-->
+<!-- ***************************** -->
+<job id="ID1">
+	<script language="JScript"></script>
+	<script language="JScript">
+	<![CDATA[
+	var aMsg02, iTimeOut;
+	aMsg02 = "";
+	iTimeOut = 3000; // 3 Sec
+
+	aMsg02 += "Success! Успех!\n\n";
+	aMsg02 += "В Вашу систему, вероятно, успешно добавлены основные исключения антивируса Microsoft Windows Defender.\n";
+	aMsg02 += "Теперь пользовательские скрипты не будут вызывать ложного срабатывания антивируса.\n";
+	aMsg02 += "Если антивирус всё равно реагирует на установщик пакетов, добавьте исключения вручную.\n";
+	aMsg02 += "\nМожете продолжать установку.\n";
+	]]>
+	</script>
+	<script language="VBScript">
+	<![CDATA[
+	WScript.Echo aMsg02
+	WScript.Sleep iTimeOut
+	]]>
+	</script>
+</job>

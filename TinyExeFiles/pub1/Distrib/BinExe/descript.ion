@@ -1,0 +1,6 @@
+e.cmd -- запуск какого-то командного обработчика\nВ
+edlinw32.exe 	-- файл - строковый редактор для правки файлов на удалённом компьютере в CLI WinRS или Telnet сессии.\nЭто один из немногих редакторов, работающих в этих сессиях. Остальные требуют запуска полноценного терминала.\nВ
+ele.exe -- файл какого-то командного обьработчика\nВ
+Launch.exe -- программа для запуска других файлов/программ со значениями по-умолчанию\n(например: Launch Install.txt)\nВ
+NSudo.exe -- An Auxiliary Program for Run Programs with System and TrustedInstaller Privileges\nВ
+SetACL.exe - An Auxiliary Prrogram for Change Access Control Level Priveleges at Command String Interface (e.g. Registry Nodes)\nВ

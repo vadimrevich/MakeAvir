@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Product Id="32A6C045-4EDE-4A0B-917E-7F7E54C8751F" Name="NIT-TinyExeFiles" Language="1033" Version="0.0.2.0" Manufacturer="New Internet Technologies Inc." UpgradeCode="F169A81A-220E-437D-AD0D-C27AEA923036">
+        <Package Description="Test file in a Product" Comments="Simple test" InstallerVersion="200" Compressed="yes" />
+        <Media Id="1" Cabinet="simple.cab" EmbedCab="yes" />
+        <WixVariable Id="WixUILicenseRtf" Value="license.rtf" />
+        <Directory Id="TARGETDIR" Name="SourceDir">
+            <Directory Id="INSTALLFOLDER" Name="pub1">
+                <Directory Id="DISTRIB" Name="Distrib">
+                    <Directory Id="BINEXE" Name="BinExe">
+                        <Component Id="_7ZA.DLL" DiskId="1" Guid="21AA230E-78CE-4635-A8BB-272C682C0F27">
+                            <File Id="_7ZA.DLL" Name="7za.dll" Source="pub1\Distrib\BinExe\7za.dll" />
+                        </Component>
+                        <Component Id="_7ZA.EXE" DiskId="1" Guid="9131737A-0472-4AA8-8929-9EB08D7402CD">
+                            <File Id="_7ZA.EXE" Name="7za.exe" Source="pub1\Distrib\BinExe\7za.exe" />
+                        </Component>
+                        <Component Id="_7ZXA.DLL" DiskId="1" Guid="008E59D3-AC68-456D-B77D-ECEEDFA37D5C">
+                            <File Id="_7ZXA.DLL" Name="7zxa.dll" Source="pub1\Distrib\BinExe\7zxa.dll" />
+                        </Component>
+                        <Component Id="ARJ_REGISTER.EXE" DiskId="1" Guid="C418E7EB-D59B-41B8-9FD4-43228D4EC9DE">
+                            <File Id="ARJ_REGISTER.EXE" Name="arj-register.exe" Source="pub1\Distrib\BinExe\arj-register.exe" />
+                        </Component>
+                        <Component Id="ARJ.EXE" DiskId="1" Guid="ACEAE75A-88D9-495E-ABAA-D7AF79657A4B">
+                            <File Id="ARJ.EXE" Name="arj.exe" Source="pub1\Distrib\BinExe\arj.exe" />
+                        </Component>
+                        <Component Id="ARJDISP.EXE" DiskId="1" Guid="A11C2414-C861-446B-834C-BC70992B19A8">
+                            <File Id="ARJDISP.EXE" Name="arjdisp.exe" Source="pub1\Distrib\BinExe\arjdisp.exe" />
+                        </Component>
+                        <Component Id="BUNZIP2.EXE" DiskId="1" Guid="2D44C17A-BA60-4EA5-817C-5EB061494A96">
+                            <File Id="BUNZIP2.EXE" Name="bunzip2.exe" Source="pub1\Distrib\BinExe\bunzip2.exe" />
+                        </Component>
+                        <Component Id="BZCAT.EXE" DiskId="1" Guid="69299482-0E7B-47B8-A0E7-CB978822B380">
+                            <File Id="BZCAT.EXE" Name="bzcat.exe" Source="pub1\Distrib\BinExe\bzcat.exe" />
+                        </Component>
+                        <Component Id="BZIP2.DLL" DiskId="1" Guid="5F552CC0-7A31-4051-8EE9-E3A14D6E3635">
+                            <File Id="BZIP2.DLL" Name="bzip2.dll" Source="pub1\Distrib\BinExe\bzip2.dll" />
+                        </Component>
+                        <Component Id="BZIP2.EXE" DiskId="1" Guid="F4FC2866-D366-4F7F-8E6D-067355752E18">
+                            <File Id="BZIP2.EXE" Name="bzip2.exe" Source="pub1\Distrib\BinExe\bzip2.exe" />
+                        </Component>
+                        <Component Id="BZIP2RECOVER.EXE" DiskId="1" Guid="C0D57513-26D6-4741-A5D3-04CB1DD9006D">
+                            <File Id="BZIP2RECOVER.EXE" Name="bzip2recover.exe" Source="pub1\Distrib\BinExe\bzip2recover.exe" />
+                        </Component>
+                        <Component Id="CHKADMIN.EXE" DiskId="1" Guid="2DC9E433-AC46-48CF-A59A-3876928314EA">
+                            <File Id="CHKADMIN.EXE" Name="chkadmin.exe" Source="pub1\Distrib\BinExe\chkadmin.exe" />
+                        </Component>
+                        <Component Id="COPYTOUTIL_00.CMD" DiskId="1" Guid="C0C83E23-C65A-4C10-8782-06D5F7739DF3">
+                            <File Id="COPYTOUTIL_00.CMD" Name="CopyToUtil_00.cmd" Source="pub1\Distrib\BinExe\CopyToUtil_00.cmd" />
+                        </Component>
+                        <Component Id="CURL_CA_BUNDLE.CRT" DiskId="1" Guid="402C27F3-05DB-437E-A601-004E02913719">
+                            <File Id="CURL_CA_BUNDLE.CRT" Name="curl-ca-bundle.crt" Source="pub1\Distrib\BinExe\curl-ca-bundle.crt" />
+                        </Component>
+                        <Component Id="CURL.EXE" DiskId="1" Guid="9942ABA7-5372-4434-B742-2BC166EF6275">
+                            <File Id="CURL.EXE" Name="curl.exe" Source="pub1\Distrib\BinExe\curl.exe" />
+                        </Component>
+                        <Component Id="E.CMD" DiskId="1" Guid="0F958ACB-C3CB-4FB4-8955-DF0BF51C2CB6">
+                            <File Id="E.CMD" Name="e.cmd" Source="pub1\Distrib\BinExe\e.cmd" />
+                        </Component>
+                        <Component Id="EDLINW32.EXE" DiskId="1" Guid="845CC699-5776-4B16-B344-F270DF435FB8">
+                            <File Id="EDLINW32.EXE" Name="edlinw32.exe" Source="pub1\Distrib\BinExe\edlinw32.exe" />
+                        </Component>
+                        <Component Id="ELE.EXE" DiskId="1" Guid="8FE09D36-6AC7-4DC6-832E-00650D9B4E9A">
+                            <File Id="ELE.EXE" Name="ele.exe" Source="pub1\Distrib\BinExe\ele.exe" />
+                        </Component>
+                        <Component Id="FUNZIP.EXE" DiskId="1" Guid="EF98A4AE-E8CC-433D-94D8-E1CB3270F27E">
+                            <File Id="FUNZIP.EXE" Name="funzip.exe" Source="pub1\Distrib\BinExe\funzip.exe" />
+                        </Component>
+                        <Component Id="GENFILE.EXE" DiskId="1" Guid="C18E8E30-D899-473C-9653-89BAB9FEF8FD">
+                            <File Id="GENFILE.EXE" Name="genfile.exe" Source="pub1\Distrib\BinExe\genfile.exe" />
+                        </Component>
+                        <Component Id="GZIP.EXE" DiskId="1" Guid="C0C7AD7E-578E-42DD-A0EA-0E1B1C0A87FE">
+                            <File Id="GZIP.EXE" Name="gzip.exe" Source="pub1\Distrib\BinExe\gzip.exe" />
+                        </Component>
+                        <Component Id="LAUNCH.EXE" DiskId="1" Guid="04201AEF-3F43-49F3-ABBE-ED02B470113E">
+                            <File Id="LAUNCH.EXE" Name="Launch.exe" Source="pub1\Distrib\BinExe\Launch.exe" />
+                        </Component>
+                        <Component Id="LIBCURL.DLL" DiskId="1" Guid="B7A7A0F9-FE12-4CA3-8277-D7FFE6C2D703">
+                            <File Id="LIBCURL.DLL" Name="libcurl.dll" Source="pub1\Distrib\BinExe\libcurl.dll" />
+                        </Component>
+                        <Component Id="NSUDO.EXE" DiskId="1" Guid="978E6ED3-4115-4D88-B1A3-EE2F6820DB04">
+                            <File Id="NSUDO.EXE" Name="NSudo.exe" Source="pub1\Distrib\BinExe\NSudo.exe" />
+                        </Component>
+                        <Component Id="POWERRUN.EXE" DiskId="1" Guid="BCAECBDB-14F4-49E1-A649-4CB7F9ACA524">
+                            <File Id="POWERRUN.EXE" Name="PowerRun.exe" Source="pub1\Distrib\BinExe\PowerRun.exe" />
+                        </Component>
+                        <Component Id="POWERRUN.INI" DiskId="1" Guid="E7212637-B905-400C-9722-5D2FDF510F55">
+                            <File Id="POWERRUN.INI" Name="PowerRun.ini" Source="pub1\Distrib\BinExe\PowerRun.ini" />
+                        </Component>
+                        <Component Id="POWERRUN_X64.EXE" DiskId="1" Guid="840CD5FE-845C-4704-93DE-E9265833C9B2">
+                            <File Id="POWERRUN_X64.EXE" Name="PowerRun_x64.exe" Source="pub1\Distrib\BinExe\PowerRun_x64.exe" />
+                        </Component>
+                        <Component Id="REARJ.EXE" DiskId="1" Guid="B5F1321C-949D-4A3B-9C69-EDBAA087397E">
+                            <File Id="REARJ.EXE" Name="rearj.exe" Source="pub1\Distrib\BinExe\rearj.exe" />
+                        </Component>
+                        <Component Id="SETACL.EXE" DiskId="1" Guid="103A86C2-1E82-41E1-9EA9-3869EA7E3D23">
+                            <File Id="SETACL.EXE" Name="SetACL.exe" Source="pub1\Distrib\BinExe\SetACL.exe" />
+                        </Component>
+                        <Component Id="SFXWIZ32_GCC.EXE" DiskId="1" Guid="575560A5-367C-4F6C-BDE1-16E1A3706767">
+                            <File Id="SFXWIZ32_GCC.EXE" Name="SFXWiz32-gcc.exe" Source="pub1\Distrib\BinExe\SFXWiz32-gcc.exe" />
+                        </Component>
+                        <Component Id="SFXWIZ32.EXE" DiskId="1" Guid="F1B51B4B-59C9-498D-89E2-00605F7E4AC4">
+                            <File Id="SFXWIZ32.EXE" Name="SFXWiz32.exe" Source="pub1\Distrib\BinExe\SFXWiz32.exe" />
+                        </Component>
+                        <Component Id="TAR.EXE" DiskId="1" Guid="2B6A0B60-6F32-4CA5-811D-5B555F5C036C">
+                            <File Id="TAR.EXE" Name="tar.exe" Source="pub1\Distrib\BinExe\tar.exe" />
+                        </Component>
+                        <Component Id="UNRAR.EXE" DiskId="1" Guid="DC3B5D51-F122-416E-99D6-49EA0A243C74">
+                            <File Id="UNRAR.EXE" Name="UnRAR.exe" Source="pub1\Distrib\BinExe\UnRAR.exe" />
+                        </Component>
+                        <Component Id="UNZIP.EXE" DiskId="1" Guid="070E936E-7626-4EC3-8B3A-BB65BD8B4926">
+                            <File Id="UNZIP.EXE" Name="unzip.exe" Source="pub1\Distrib\BinExe\unzip.exe" />
+                        </Component>
+                        <Component Id="UNZIPSFX_GCC.EXE" DiskId="1" Guid="51AAE474-03A4-4C8D-AD09-49C570F52386">
+                            <File Id="UNZIPSFX_GCC.EXE" Name="unzipsfx-gcc.exe" Source="pub1\Distrib\BinExe\unzipsfx-gcc.exe" />
+                        </Component>
+                        <Component Id="UNZIPSFX.EXE" DiskId="1" Guid="041BE858-8D2E-4903-A666-A0CAD390AFE6">
+                            <File Id="UNZIPSFX.EXE" Name="unzipsfx.exe" Source="pub1\Distrib\BinExe\unzipsfx.exe" />
+                        </Component>
+                        <Component Id="WGET.EXE" DiskId="1" Guid="08A81F2E-E55D-4D68-8246-ED43112AFA8F">
+                            <File Id="WGET.EXE" Name="wget.exe" Source="pub1\Distrib\BinExe\wget.exe" />
+                        </Component>
+                        <Component Id="ZIP.EXE" DiskId="1" Guid="5806D267-56FE-4FCB-8151-A86E562A2C21">
+                            <File Id="ZIP.EXE" Name="zip.exe" Source="pub1\Distrib\BinExe\zip.exe" />
+                        </Component>
+                        <Component Id="ZIPCLOAK.EXE" DiskId="1" Guid="7E10E47F-2164-4A79-BCB6-8A01AD9BDF99">
+                            <File Id="ZIPCLOAK.EXE" Name="zipcloak.exe" Source="pub1\Distrib\BinExe\zipcloak.exe" />
+                        </Component>
+                        <Component Id="ZIPNOTE.EXE" DiskId="1" Guid="F06C0D3E-0E6A-48A2-AF5D-FDB6C7C9031D">
+                            <File Id="ZIPNOTE.EXE" Name="zipnote.exe" Source="pub1\Distrib\BinExe\zipnote.exe" />
+                        </Component>
+                        <Component Id="ZIPSPLIT.EXE" DiskId="1" Guid="BCE7BB08-9B46-4916-BE1F-2F6D154F9838">
+                            <File Id="ZIPSPLIT.EXE" Name="zipsplit.exe" Source="pub1\Distrib\BinExe\zipsplit.exe" />
+                        </Component>
+                    </Directory>
+                </Directory>
+            </Directory>
+        </Directory>
+        <UI />
+        <UIRef Id="WixUI_InstallDir" />
+        <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
+        <Property Id="ROOTDRIVE" Value="C:\" />
+        <Feature Id="DefaultFeature" Title="Main Feature" Level="1">
+            <ComponentRef Id="_7ZA.DLL" />
+            <ComponentRef Id="_7ZA.EXE" />
+            <ComponentRef Id="_7ZXA.DLL" />
+            <ComponentRef Id="ARJ_REGISTER.EXE" />
+            <ComponentRef Id="ARJ.EXE" />
+            <ComponentRef Id="ARJDISP.EXE" />
+            <ComponentRef Id="BUNZIP2.EXE" />
+            <ComponentRef Id="BZCAT.EXE" />
+            <ComponentRef Id="BZIP2.DLL" />
+            <ComponentRef Id="BZIP2.EXE" />
+            <ComponentRef Id="BZIP2RECOVER.EXE" />
+            <ComponentRef Id="CHKADMIN.EXE" />
+            <ComponentRef Id="COPYTOUTIL_00.CMD" />
+            <ComponentRef Id="CURL_CA_BUNDLE.CRT" />
+            <ComponentRef Id="CURL.EXE" />
+            <ComponentRef Id="E.CMD" />
+            <ComponentRef Id="EDLINW32.EXE" />
+            <ComponentRef Id="ELE.EXE" />
+            <ComponentRef Id="FUNZIP.EXE" />
+            <ComponentRef Id="GENFILE.EXE" />
+            <ComponentRef Id="GZIP.EXE" />
+            <ComponentRef Id="LAUNCH.EXE" />
+            <ComponentRef Id="LIBCURL.DLL" />
+            <ComponentRef Id="NSUDO.EXE" />
+            <ComponentRef Id="POWERRUN.EXE" />
+            <ComponentRef Id="POWERRUN.INI" />
+            <ComponentRef Id="POWERRUN_X64.EXE" />
+            <ComponentRef Id="REARJ.EXE" />
+            <ComponentRef Id="SETACL.EXE" />
+            <ComponentRef Id="SFXWIZ32_GCC.EXE" />
+            <ComponentRef Id="SFXWIZ32.EXE" />
+            <ComponentRef Id="TAR.EXE" />
+            <ComponentRef Id="UNRAR.EXE" />
+            <ComponentRef Id="UNZIP.EXE" />
+            <ComponentRef Id="UNZIPSFX_GCC.EXE" />
+            <ComponentRef Id="UNZIPSFX.EXE" />
+            <ComponentRef Id="WGET.EXE" />
+            <ComponentRef Id="ZIP.EXE" />
+            <ComponentRef Id="ZIPCLOAK.EXE" />
+            <ComponentRef Id="ZIPNOTE.EXE" />
+            <ComponentRef Id="ZIPSPLIT.EXE" />
+        </Feature>
+        <UI />
+        <SetDirectory Id="INSTALLFOLDER" Value="[WindowsVolume]pub1" />
+    </Product>
+</Wix>
