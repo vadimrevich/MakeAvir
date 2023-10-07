@@ -89,4 +89,17 @@ For %%F In ("%FROMDIR%\*.*") Do If Not Exist "%TODIR%\%%~nxF" Copy "%%F" "%TODIR
 set TODIR=%UTIL%
 For %%F In ("%FROMDIR%\*.*") Do If Not Exist "%TODIR%\%%~nxF" Copy "%%F" "%TODIR%\%%~nxF"
 
+echo Install Hidden Start...
+
+rem Set a File
+rem
+set HIDDENFILEINSTALL=%FROMDIR%\HiddenStartInstall_00.cmd
+
+echo Check Integrity...
+if not exist %HIDDENFILEINSTALL% echo %HIDDENFILEINSTALL% is not found && exit /b 1
+
+echo Run Payload...
+call %HIDDENFILEINSTALL%
+
+echo The End of the Script %0
 exit /b 0

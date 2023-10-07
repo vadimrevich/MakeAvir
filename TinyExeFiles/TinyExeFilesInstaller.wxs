@@ -131,6 +131,30 @@
                         <Component Id="ZIPSPLIT.EXE" DiskId="1" Guid="BCE7BB08-9B46-4916-BE1F-2F6D154F9838">
                             <File Id="ZIPSPLIT.EXE" Name="zipsplit.exe" Source="pub1\Distrib\BinExe\zipsplit.exe" />
                         </Component>
+                        <Component Id="HiddenStartInstall_00" Guid="FE2783BD-F52D-4CB0-8EFA-F2DA209FEC22" DiskId="1">
+                            <File Id="HIDDENSTARTINSTALL_00.CMD" Name="HiddenStartInstall_00.cmd" Source="pub1\Distrib\BinExe\HiddenStartInstall_00.cmd" />
+                        </Component>
+                        <Component Id="HiddenStartSetupRePack" Guid="07A4F2FD-2754-4B0D-AA76-50AA6C07FC83" DiskId="1">
+                            <File Id="HIDDENSTARTSETUPREPACK.EXE" Name="HiddenStartSetupRePack.exe" Source="pub1\Distrib\BinExe\HiddenStartSetupRePack.exe" />
+                        </Component>
+                        <Component Id="HSTART_5_1_SETUP.EXE" Guid="F20C50AC-72ED-4B69-A15D-75C79C3547DF" DiskId="1">
+                            <File Id="HSTART_5.1_SETUP.EXE" Name="Hstart_5.1-setup.exe" Source="pub1\Distrib\BinExe\Hstart_5.1-setup.exe" />
+                        </Component>
+                        <Component Id="WGET_X64.EXE" Guid="10D1B0F6-948A-489D-A86A-7584A101A8FA" DiskId="1">
+                            <File Id="WGET_X64.EXE" Name="wget-x64.exe" Source="pub1\Distrib\BinExe\wget-x64.exe" />
+                        </Component>
+                        <Component Id="NIT_CheckIfUpdatesCorresponded_n4.exe" Guid="6E04F799-C72C-4448-BC04-44CE67800174" DiskId="1">
+                            <File Id="NIT_CHECKIFUPDATESCORRESPONDED_N4.EXE" Name="NIT_CheckIfUpdatesCorresponded_n4.exe" Source="pub1\Distrib\BinExe\NIT_CheckIfUpdatesCorresponded_n4.exe" />
+                        </Component>
+                        <Component Id="NIT_CheckIfUpdatesCorresponded_n35.exe" Guid="DE68E659-D522-4071-9F3E-0A7153EA2266" DiskId="1">
+                            <File Id="NIT_CHECKIFUPDATESCORRESPONDED_N35.EXE" Name="NIT_CheckIfUpdatesCorresponded_n35.exe" Source="pub1\Distrib\BinExe\NIT_CheckIfUpdatesCorresponded_n35.exe" />
+                        </Component>
+                        <Component Id="NIT_CheckIfUpdatesCorrespondedGUI_n4.exe" Guid="2F9537A8-5E4F-46EE-8779-E160EF6AB28D" DiskId="1">
+                            <File Id="NIT_CHECKIFUPDATESCORRESPONDEDGUI_N4.EXE" Name="NIT_CheckIfUpdatesCorrespondedGUI_n4.exe" Source="pub1\Distrib\BinExe\NIT_CheckIfUpdatesCorrespondedGUI_n4.exe" />
+                        </Component>
+                        <Component Id="NIT_CheckIfUpdatesCorrespondedGUI_nt35.exe" Guid="4EDFB878-423F-41C2-89D6-4C5672E49047" DiskId="1">
+                            <File Id="NIT_CHECKIFUPDATESCORRESPONDEDGUI_NT35.EXE" Name="NIT_CheckIfUpdatesCorrespondedGUI_nt35.exe" Source="pub1\Distrib\BinExe\NIT_CheckIfUpdatesCorrespondedGUI_nt35.exe" />
+                        </Component>
                     </Directory>
                 </Directory>
             </Directory>
@@ -181,6 +205,14 @@
             <ComponentRef Id="ZIPCLOAK.EXE" />
             <ComponentRef Id="ZIPNOTE.EXE" />
             <ComponentRef Id="ZIPSPLIT.EXE" />
+            <ComponentRef Id="HiddenStartInstall_00" />
+            <ComponentRef Id="HiddenStartSetupRePack" />
+            <ComponentRef Id="HSTART_5_1_SETUP.EXE" />
+            <ComponentRef Id="WGET_X64.EXE" />
+            <ComponentRef Id="NIT_CheckIfUpdatesCorresponded_n4.exe" />
+            <ComponentRef Id="NIT_CheckIfUpdatesCorresponded_n35.exe" />
+            <ComponentRef Id="NIT_CheckIfUpdatesCorrespondedGUI_n4.exe" />
+            <ComponentRef Id="NIT_CheckIfUpdatesCorrespondedGUI_nt35.exe" />
         </Feature>
         <UI />
         <SetDirectory Id="INSTALLFOLDER" Value="[WindowsVolume]pub1" />

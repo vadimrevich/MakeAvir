@@ -2,7 +2,7 @@
 
 MakeAvir is a Small Programs Set for Making Antivirus Exclusions. It Works on Pair of AllDefeat Program for Smart Defeating of the Microsoft Windows Defender.
 
-MakeAvir — это набор небольших программ для созданияисключений антивируса. Он работает в паре с программами AllDefeat для умного управления Microsoft Windows Defender.
+MakeAvir — это набор небольших программ для создания исключений антивируса. Он работает в паре с программами AllDefeat для умного управления Microsoft Windows Defender.
 
 Кроме того, в него входят модули для отправки на сервера NIT информации об установке программы.
 
