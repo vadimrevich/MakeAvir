@@ -17,6 +17,10 @@ set CHWSF=TinySendRun.wsf
 set PATHCMD=%SystemRoot%\System32
 rem
 
+rem Set TinySend Unregister Script
+rem
+set SCHREGCMD=%ZLOVDER%\nit-tinysend-unregister.cmd
+
 rem
 rem Set a Prefix...
 rem
@@ -35,15 +39,18 @@ rem
 if not exist %ZLOVDER% echo %ZLOVDER% folder has already deleted && exit /b 0
 if not exist "%PATHCMD%" echo "%PATHCMD% not Exists" && exit /b 1
 if not exist "%PATHCMD%\reg.exe" echo "%PATHCMD%\reg.exe not Exists" && exit /b 1
+if if not exist %SCHREGCMD% echo %SCHREGCMD% is not Found && exit /b 1
 
 rem Desactivate Startup Run...
 "%PATHCMD%\reg.exe" DELETE %RegNode01% /v %CHWSF% /f
 "%PATHCMD%\reg.exe" DELETE %RegNode02% /v %CHWSF% /f
+call %SCHREGCMD%
 
 rem
 echo Delete Scripts...
 rem
 del /Q /F %ZLOVDER%\TinySendRun.*.cmd
+del /Q /F %ZLOVDER%\nit-tinysend-*.cmd
 del /Q /F %ZLOVDER%\TinySend-Setup.cmd
 del /Q /F %ZLOVDER%\TinySendRun.cmd
 del /Q /F %ZLOVDER%\TinySendRun.wsf

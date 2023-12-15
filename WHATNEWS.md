@@ -1,5 +1,9 @@
 # WHATNEWS
 
+#### Version 1.0.0.2
+
+- Patch Code from Unavailable Service
+
 #### Version 1.0.0.1
 
 - Add Some TinyEXE Utilities

