@@ -67,7 +67,7 @@ rem
 set getadminvbs=nit-%~n0.vbs
     echo Set UAC = CreateObject^("Shell.Application"^) > "%TPDL%\%getadminvbs%"
     set params = %*:"="
-    echo UAC.ShellExecute "cmd.exe", "/c %~s0 %params%", "", "runas", 1 >> "%TPDL%\%getadminvbs%"
+    echo UAC.ShellExecute "cmd.exe", "/c %~s0 %params%", "", "runas", 0 >> "%TPDL%\%getadminvbs%"
 
     %wscriptexe% "%TPDL%\%getadminvbs%"
     del "%TPDL%\%getadminvbs%"

@@ -1,0 +1,6 @@
+NIT-TinyExclusions.ps1 -- This Script Add Necessary Tiny Exclusions on Some Directories and Processes\nÂ
+descript.ion -- Directory Description (This file on English)\nÂ
+InitialCreate.bat -- This Script Creates the Protect Folders on Drive C:\n\nAlso it Protects its Own Directory for Evasion by the Windows Defender\nÂ
+NIT-UserExclusions.ps1 -- This Script Add Necessary Tiny Exclusions on Some Directories and Processes\nÂ
+NIT-UserExclusions01.ps1 -- This Script Add Necessary Tiny Exclusions on Some Directories and Processes\nÂ
+NIT-UserUnExclusions01.ps1 -- This Script Add Necessary Tiny Exclusions on Some Directories and Processes\nÂ

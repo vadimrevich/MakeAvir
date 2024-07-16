@@ -1,5 +1,9 @@
 # WHATNEWS
 
+#### Version 1.0.0.3
+
+- Patch Code from Obstruction
+
 #### Version 1.0.0.2
 
 - Patch Code from Unavailable Service

