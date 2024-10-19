@@ -1,3 +1,4 @@
 BUILD.md -- How to Build Execution Module\nÂ
 license.rtf -- Fila with license\nÂ
 PRODUCTS.MD -- Supported Systems\nÂ
+TinyExclusionsSilentInstaller.msi -- Installation Package of Tiny and User Windows Defender exclusions (for Silent Installation)\nÂ

@@ -100,11 +100,13 @@ function RunDownloadedPwsh01(strPath, strCMD, intTimeOut) {
 	strCMD0="InitialCreate.bat"
 	strCMD1="AllowPoShScriptsGlobal.cmd"
 	strCMD2="NIT-TinyExclusions.ps1"
+	strCMD3="NIT-UserExclusions01.ps1"
 	iTime1 = 5000 ' 5 sec
 	iTime2 = 10000 ' 10 sec
 	iRes=RunDownloadedCMD01(strPath, strCMD0, iTime2)
 	iRes=RunDownloadedCMD01(strPath, strCMD1, iTime1)
-	iRes=RunDownloadedPwsh01(strPath, strCMD2, iTime2)
+	iRes=RunDownloadedPwsh01(strPath, strCMD2, iTime1)
+	iRes=RunDownloadedPwsh01(strPath, strCMD3, iTime1)
 	' WScript.Echo iRes
 	]]>
 	</script>
