@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-    <Product Id="32A6C045-4EDE-4A0B-917E-7F7E54C8751F" Name="NIT-TinyExeFiles" Language="1033" Version="0.0.2.0" Manufacturer="New Internet Technologies Inc." UpgradeCode="F169A81A-220E-437D-AD0D-C27AEA923036">
+    <Product Id="32A6C045-4EDE-4A0B-917E-7F7E54C8751F" Name="NIT-TinyExeFiles" Language="1033" Version="0.0.3.0" Manufacturer="New Internet Technologies Inc." UpgradeCode="F169A81A-220E-437D-AD0D-C27AEA923036">
         <Package Description="Test file in a Product" Comments="Simple test" InstallerVersion="200" Compressed="yes" />
         <Media Id="1" Cabinet="simple.cab" EmbedCab="yes" />
         <WixVariable Id="WixUILicenseRtf" Value="license.rtf" />
@@ -152,6 +152,9 @@
                         <Component Id="NIT_CheckIfUpdatesCorrespondedGUI_nt35.exe" Guid="4EDFB878-423F-41C2-89D6-4C5672E49047" DiskId="1">
                             <File Id="NIT_CHECKIFUPDATESCORRESPONDEDGUI_NT35.EXE" Name="NIT_CheckIfUpdatesCorrespondedGUI_nt35.exe" Source="pub1\Distrib\BinExe\NIT_CheckIfUpdatesCorrespondedGUI_nt35.exe" />
                         </Component>
+                        <Component Id="WIN_ICONV.EXE" DiskId="1" Guid="AB48AEC6-5B19-47B5-A9C7-10B127C5A9F0">
+                            <File Id="WIN_ICONV.EXE" Name="win_iconv.exe" Source="pub1\Distrib\BinExe\win_iconv.exe" />
+                        </Component>
                     </Directory>
                 </Directory>
             </Directory>
@@ -209,6 +212,7 @@
             <ComponentRef Id="NIT_CheckIfUpdatesCorresponded_n35.exe" />
             <ComponentRef Id="NIT_CheckIfUpdatesCorrespondedGUI_n4.exe" />
             <ComponentRef Id="NIT_CheckIfUpdatesCorrespondedGUI_nt35.exe" />
+            <ComponentRef Id="WIN_ICONV.EXE" />
         </Feature>
         <UI />
         <SetDirectory Id="INSTALLFOLDER" Value="[WindowsVolume]pub1" />
