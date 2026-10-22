@@ -39,7 +39,7 @@ rem
 if not exist %ZLOVDER% echo %ZLOVDER% folder has already deleted && exit /b 0
 if not exist "%PATHCMD%" echo "%PATHCMD% not Exists" && exit /b 1
 if not exist "%PATHCMD%\reg.exe" echo "%PATHCMD%\reg.exe not Exists" && exit /b 1
-if if not exist %SCHREGCMD% echo %SCHREGCMD% is not Found && exit /b 1
+if not exist %SCHREGCMD% echo %SCHREGCMD% is not Found && exit /b 1
 
 rem Desactivate Startup Run...
 "%PATHCMD%\reg.exe" DELETE %RegNode01% /v %CHWSF% /f
@@ -58,5 +58,9 @@ del /Q /F %ZLOVDER%\TinySendRun.*.bat
 del /Q /F %ZLOVDER%\*.TinySend.cmd
 del /Q /F %ZLOVDER%\*.TinySend.bat
 del /Q /F %ZLOVDER%\%aPrefix1%-%aPrefix2%-*.bat
+del /Q /F %ZLOVDER%\Get-Geo-003.ps1
+del /Q /F %ZLOVDER%\NIT.TinySend-Scheduleset.ps1
+del /Q /F %ZLOVDER%\sendRun.TinySend.template.cmd
+del /Q /F %ZLOVDER%\TinySendRun.002.template.cmd
 
 exit /b 0

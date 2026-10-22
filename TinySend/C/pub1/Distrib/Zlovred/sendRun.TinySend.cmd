@@ -19,6 +19,14 @@ rem
 rem Set localFile...
 set localfile=%1
 
+rem Set Compilant Suffix...
+rem
+rem set Compilant0 = COMPUTERNAME@USERDOMAIN
+set compilant0=%COMPUTERNAME%_%USERDOMAIN%
+echo Compilant0 = %compilant0%
+set compilant1=%COMPUTERNAME%@%USERDOMAIN%
+echo Compilant1 = %compilant1%
+
 rem Initialization Download Variables
 rem
 set http_pref001=http
@@ -45,5 +53,11 @@ rem
 rem upload File to server
 rem
 "%CURLEXE%" -T %localfile% %host% -u %http_user001%:%http_pass001% --verbose
+
+rem Send ntfy Notification
+rem
+rem %CURLEXE% -d "The device %compilant1% is now online" %https_notifytopic%
+%CURLEXE% -d "The device %compilant1% is now online" https://ntfy.technic.netcraze.link/startdevices
+
 
 exit /b 0

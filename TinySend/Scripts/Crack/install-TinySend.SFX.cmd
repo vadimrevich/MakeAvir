@@ -1,4 +1,14 @@
 @echo off
+rem *******************************************************
+rem INSTALL-TinySend.cmd
+rem This Script will Install TinySend Scrips - the System
+rem of Online Windows Computer Monitoring
+rem
+rem This Script must be Run after Antivirus Exclusuions
+rem Settings. The Script must bu Run with Elevated
+rem Privileges
+rem *******************************************************
+@echo off
 
 rem set TPDL variable
 rem

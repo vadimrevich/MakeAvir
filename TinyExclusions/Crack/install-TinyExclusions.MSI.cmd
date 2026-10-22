@@ -22,13 +22,13 @@ set DOTBIN=C:\.BIN
 rem Set Files...
 rem
 set CMDFILE001=%ZLOVRED%\%INSTALLSCRIPT%
-set WMICEXE=%SystemRoot%\System32\wbem\WMIC.exe
+set POSHEXE=%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe
 set WSCRIPTEXE=%SystemRoot%\System32\wscript.exe
 set MSIEXECEXE=%SystemRoot%\System32\msiexec.exe
 
 echo Check System Integrity...
 rem
-if not exist %WMICEXE% echo %WMICEXE% is not found && exit /b 1
+if not exist %POSHEXE% echo %POSHEXE% is not found && exit /b 1
 if not exist %WSCRIPTEXE% echo %WSCRIPTEXE% is not found && exit /b 1
 if not exist %MSIEXECEXE% echo %MSIEXECEXE% is not found && exit /b 1
 
@@ -64,12 +64,15 @@ echo Run as Admin...
 
 set SFXARCH=TinyExclusionsInstaller.msi
 set SFXNAME="NIT-TinyExclusions"
+set IDENT="{FA5D224A-0CFA-4D04-9FA6-6037C6A84173}"
+@echo ProduvtID = %IDENT%
 set FOLDER=.
 if not exist "%FOLDER%\%SFXARCH%" goto Error
 rem
 echo Uninstall Previous Copy...
 rem
-%WMICEXE% product where name=%SFXNAME% call uninstall
+rem %POSHEXE% -NoLogo -NoProfile -ExecutionPolicy Bypass -Command "(CimInstance -Class Win32_Product | Where-Object{$_.Name -match '%SFXNAME%'}).Uninstall"
+%MSIEXECEXE% /x %IDENT% /qn /quiet
 rem
 echo Install %SFXARCH%...
 rem

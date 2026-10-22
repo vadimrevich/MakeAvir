@@ -20,16 +20,16 @@ rem Set localFile...
 set localfile=%1
 
 echo ===***===***=== >> %localfile%
-echo ""
+echo. >> %localfile%
 echo External IP: >> %localfile%
-"%CURLEXE%" http://ifconfig.me/ip >> %localfile%
-echo ""
+"%CURLEXE%" http://ifconfig.me/ip >> %localfile% 2>nul
+echo. >> %localfile%
 echo External IPv4: >> %localfile%
 rem "%CURLEXE%" 2ip.ua >> %localfile%
-"%CURLEXE%" -4 icanhazip.com  >> %localfile%
+"%CURLEXE%" -4 icanhazip.com  >> %localfile% 2>nul
 echo External IPv6: >> %localfile%
 rem "%CURLEXE%" 2ip.com.ua >> %localfile%
-"%CURLEXE%" -6 icanhazip.com >> %localfile%
+"%CURLEXE%" -6 icanhazip.com >> %localfile% 2> nul
 rem Set an IP as Variable
 FOR /F "tokens=* USEBACKQ" %%F IN (`%CURLEXE% -4 icanhazip.com`) DO (
 SET anIPV4=%%F
@@ -39,9 +39,11 @@ SET anIPV6=%%F
 )
 rem Get Info about IP
 rem
+echo. >> %localfile% 2> nul
 echo an IPv4 Data: >> %localfile%
-"%CURLEXE%" http://ip.yooooo.us/%anIPV4% >> %localfile%
+"%CURLEXE%" http://ipwho.is/%anIPV4% >> %localfile% 2> nul
+echo.  >> %localfile% 2> nul
 echo an IPv6 Data: >> %localfile%
-"%CURLEXE%" http://ip.yooooo.us/%anIPV6% >> %localfile%
+"%CURLEXE%" http://ipwho.is/%anIPV6% >> %localfile% 2> nul
 
 exit /b 0

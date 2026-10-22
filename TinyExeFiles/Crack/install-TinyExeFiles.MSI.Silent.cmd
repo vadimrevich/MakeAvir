@@ -1,4 +1,10 @@
 @echo off
+rem *******************************************************
+rem nit-install-TinyExeFiles.MSI.cmd
+rem This Script will Install the TinyExeFiles 
+rem Packet witn Command Line Utilities
+rem *******************************************************
+@echo off
 
 set CURDIR=%CD%
 %~d0
@@ -23,13 +29,13 @@ set DOTBIN=C:\.BIN
 rem Set Files...
 rem
 set CMDFILE001=%BINEXEDIR%\%INSTALLSCRIPT%
-set WMICEXE=%SystemRoot%\System32\wbem\WMIC.exe
+set POSHEXE=%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe
 set WSCRIPTEXE=%SystemRoot%\System32\wscript.exe
 set MSIEXECEXE=%SystemRoot%\System32\msiexec.exe
 
 rem echo Check System Integrity...
 rem
-if not exist %WMICEXE% echo %WMICEXE% is not found && exit /b 1
+if not exist %POSHEXE% echo %POSHEXE% is not found && exit /b 1
 if not exist %WSCRIPTEXE% echo %WSCRIPTEXE% is not found && exit /b 1
 if not exist %MSIEXECEXE% echo %MSIEXECEXE% is not found && exit /b 1
 
@@ -64,13 +70,18 @@ set getadminvbs=nit-%~n0.vbs
 echo Run as Admin...
 
 set SFXARCH=TinyExeFilesInstaller.msi
-set SFXNAME="NIT-TinyExeFiles"
+set SFXNAME=NIT-TinyExeFiles
+set IDENT="{32A6C045-4EDE-4A0B-917E-7F7E54C8751F}"
+@echo ProduvtID = %IDENT%
 set FOLDER=.
 if not exist "%FOLDER%\%SFXARCH%" goto Error
 rem
 rem echo Uninstall Previous Copy...
 rem
-%WMICEXE% product where name=%SFXNAME% call uninstall >NUL 2>NUL
+%MSIEXECEXE% /x %IDENT% /qn /quiet
+
+rem %POSHEXE% -NoLogo -NoProfile -ExecutionPolicy Bypass -Command "(CimInstance -Class Win32_Product | Where-Object{$_.Name -match '%SFXNAME%'}).Uninstall"
+rem msiexec.exe /x "%Ident%"
 rem
 rem echo Install %SFXARCH%...
 rem

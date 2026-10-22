@@ -56,7 +56,6 @@ if not exist "%PATHCMD%\cscript.exe" echo "%PATHCMD%\cscript.exe not Exists" && 
 if not exist %WSCRIPTEXE% echo %WSCRIPTEXE% not Exist && exit /b 2
 if not exist "%PATHCMD%\shutdown.exe" echo "%PATHCMD%\shutdown.exe not Exists" && exit /b 2
 if not exist "%PATHCMD%\find.exe" echo "%PATHCMD%\find.exe not Exists" && exit /b 2
-if not exist "%PATHCMD%\wbem\WMIC.exe" echo "%PATHCMD%\wbem\WMIC.exe not Exists" && exit /b 2
 rem if not exist "%PATHCMD%\bitsadmin.exe" echo "%PATHCMD%\bitsadmin.exe not Exists" && exit /b 2
 if not exist "%PATHCMD%\WindowsPowerShell\v1.0\powershell.exe" echo "%PATHCMD%\WindowsPowerShell\v1.0\powershell.exe not Exists" && exit /b 2
 rem if not exist "%PAR1%" echo "The File PAR1 = %PAR1% not found" && exit /b 2
